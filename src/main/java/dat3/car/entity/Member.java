@@ -5,11 +5,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -17,11 +12,9 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "member")
-public class Member {
+public class Member extends AdminDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
     String username;
     String password;
     String email;
@@ -32,10 +25,6 @@ public class Member {
     String  zip;
     boolean approved;
     int ranking;
-    @CreationTimestamp
-    LocalDateTime created;
-    @UpdateTimestamp
-    LocalDateTime lastEdited;
 
     public Member(String user, String password, String email, String firstName,
                   String lastName, String street, String city, String zip) {
