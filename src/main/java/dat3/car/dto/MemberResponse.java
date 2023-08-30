@@ -32,6 +32,7 @@ public class MemberResponse {
     LocalDateTime edited;
     Integer ranking;
     Boolean approved;
+    // Integer og Boolean for di int og boolean ikke kan være NULL
 
     //Convert Member Entity to Member DTO
     public MemberResponse(Member m, boolean includeAll) {

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@RestController // Denne kontroller ved at når det kommer JSON kan den lave det om til et objekt
 @RequestMapping("api/members")
 class MemberController {
 
@@ -29,9 +29,7 @@ class MemberController {
         return memberRepository.findAll();
     } */
 
-    /*
-    CRUD API BELOW
-     */
+    /* ------- CRUD API BELOW -------  */
 
     //Security: Admin Only
     @GetMapping
@@ -58,15 +56,18 @@ class MemberController {
         return memberService.editMember(body, username);
     }
 
-    //Security ????
+    //Security: Admin
     @PatchMapping("/ranking/{username}/{value}")
-    ResponseEntity<Boolean> setRankingForUser(@PathVariable String username, @PathVariable int value) {
-        return null;
+    void setRankingForUser(@PathVariable String username, @PathVariable int value) {
+        memberService.setRankingForUser(username, value);
     }
 
-    // Security ????
+    // Security: Admin
     @DeleteMapping("/{username}")
-    void deleteMemberByUsername(@PathVariable String username) {}
+    void deleteMemberByUsername(@PathVariable String username) {
+        memberService.deleteMemberByUsername(username);
+    }
+
 
 
 }
