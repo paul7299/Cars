@@ -66,7 +66,7 @@ class MemberServiceH2Test {
         assertEquals(HttpStatus.NOT_FOUND, rsp.getStatusCode());
         // Burde fungere
 
-    } */
+    } */ //TODO
 
     @Test
         /* Remember MemberRequest comes from the API layer, and MemberResponse is returned to the API layer
