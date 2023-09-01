@@ -1,14 +1,15 @@
 package dat3.car.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import dat3.car.entity.Member;
 import lombok.*;
 
 @Getter
-    @Setter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Builder
-//@JsonInclude(JsonInclude.Include.NON_NULL) //TODO hvorfor er denne udkommenteret?
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@JsonInclude(JsonInclude.Include.NON_NULL)
 
 public class MemberRequest {
     String username;

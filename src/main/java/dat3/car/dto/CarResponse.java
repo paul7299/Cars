@@ -19,6 +19,7 @@ public class CarResponse {
     String brand;
     String model;
     double pricePrDay;
+    int bestDiscount; // TODO kun admin
 
     //@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss",shape = JsonFormat.Shape.STRING) // TODO Hvorfor udkommenteret
     LocalDateTime created;
@@ -29,14 +30,17 @@ public class CarResponse {
 
 
     // Car to CarResponse conversion
-    public CarResponse(Car c) {
+    public CarResponse(Car c, boolean includeAll) {
         this.brand = c.getBrand();
         this.model = c.getModel();
         this.pricePrDay = c.getPricePrDay();
-    }
 
-    public static Car getCarEntity(CarRequest c) {
-        return new Car(c.getBrand(), c.getModel(), c.getPricePrDay(), c.getBestDiscount());
+        if(includeAll){
+            this.created = c.getCreated();
+            this.edited = c.getLastEdited();
+            this.bestDiscount = c.getBestDiscount();
+        }
+
     }
 
 }
