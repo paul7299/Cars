@@ -25,14 +25,14 @@ public class MemberResponse {
     String street;
     String city;
     String zip;
-    //@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss",shape = JsonFormat.Shape.STRING)
+    //@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss",shape = JsonFormat.Shape.STRING) // TODO Hvorfor udkommenteret
     LocalDateTime created;
 
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss",shape = JsonFormat.Shape.STRING)
     LocalDateTime edited;
     Integer ranking;
     Boolean approved;
-    // Integer og Boolean for di int og boolean ikke kan være NULL
+    // Integer og Boolean fordi int og boolean ikke kan være NULL
 
     //Convert Member Entity to Member DTO
     public MemberResponse(Member m, boolean includeAll) {
