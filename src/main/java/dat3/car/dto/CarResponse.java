@@ -2,6 +2,7 @@ package dat3.car.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import dat3.car.entity.Car;
 import lombok.*;
 
@@ -13,13 +14,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 
+// Hvis ikke denne er inkluderet, sendes også dates med (som null)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CarResponse {
 
     int id;
     String brand;
     String model;
     double pricePrDay;
-    int bestDiscount; // TODO kun admin
+    Integer bestDiscount;
 
     //@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss",shape = JsonFormat.Shape.STRING) // TODO Hvorfor udkommenteret
     LocalDateTime created;
@@ -31,6 +34,7 @@ public class CarResponse {
 
     // Car to CarResponse conversion
     public CarResponse(Car c, boolean includeAll) {
+        this.id = c.getId();
         this.brand = c.getBrand();
         this.model = c.getModel();
         this.pricePrDay = c.getPricePrDay();
