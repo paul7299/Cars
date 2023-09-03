@@ -23,6 +23,7 @@ class MemberController {
     }
 
     // @Autowired  //Deliberately added via Autowired, remove this endpoint when you know why it's bad
+    // TODO why
 
     /* @GetMapping("/bad")
     public List<Member> getMembersBad(){
@@ -42,7 +43,6 @@ class MemberController {
     MemberResponse getMemberById(@PathVariable String username) throws Exception {
         return memberService.findById(username);
     }
-
 
     //Security: Anonymous
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

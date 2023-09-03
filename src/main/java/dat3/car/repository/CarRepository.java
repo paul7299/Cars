@@ -8,4 +8,6 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
     Car findCarByPricePrDay(double pricerPrDay);
     // TODO findRentalPriceByCarName
 
+    Car findCarByBrandAndModel(String brand, String model);
+
 }

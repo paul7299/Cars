@@ -31,7 +31,6 @@ public class CarResponse {
     LocalDateTime edited;
 
 
-
     // Car to CarResponse conversion
     public CarResponse(Car c, boolean includeAll) {
         this.id = c.getId();

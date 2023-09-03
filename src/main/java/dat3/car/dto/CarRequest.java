@@ -27,6 +27,7 @@ public class CarRequest {
         this.bestDiscount = c.getBestDiscount();
     }
 
+    // Denne bruges til at konvertere en CarRequest til en Car
     public static Car getCarEntity(CarRequest c) {
         return new Car(c.getBrand(), c.getModel(), c.getPricePrDay(), c.getBestDiscount());
     }
