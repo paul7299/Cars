@@ -2,24 +2,30 @@ package dat3.car.config;
 
 import dat3.car.entity.Car;
 import dat3.car.entity.Member;
+import dat3.car.entity.Reservation;
 import dat3.car.repository.CarRepository;
 import dat3.car.repository.MemberRepository;
+import dat3.car.repository.ReservationRepository;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@Configuration
 public class DeveloperData implements ApplicationRunner {
 
     CarRepository carRepository;
     MemberRepository memberRepository;
+    ReservationRepository reservationRepository;
 
-    public DeveloperData(CarRepository carRepository, MemberRepository memberRepository) {
+    public DeveloperData(CarRepository carRepository, MemberRepository memberRepository, ReservationRepository reservationRepository) {
         this.carRepository = carRepository;
         this.memberRepository = memberRepository;
+        this.reservationRepository = reservationRepository;
     }
 
     @Override
@@ -28,7 +34,9 @@ public class DeveloperData implements ApplicationRunner {
         List <Member> members = new ArrayList<>();
         System.out.println("I was called");
 
-        cars.add(new Car("Ford", "Focus", 600, 25));
+        Car car1 = new Car("Ford", "Focus", 600, 25);
+
+        cars.add(car1);
         cars.add(new Car("Chevrolet", "Cruze", 550, 10));
         cars.add(new Car("Nissan", "Sentra", 700, 30));
         cars.add(new Car("Volkswagen", "Golf", 800, 18));
@@ -52,8 +60,10 @@ public class DeveloperData implements ApplicationRunner {
 
         carRepository.saveAll(cars);
 
-        members.add(new Member("user1", "pass1", "email1@example.com",
-                "John", "Doe", "123 Main St", "Cityville", "12345"));
+        Member m1 = new Member("user1", "pass1", "email1@example.com",
+                "John", "Doe", "123 Main St", "Cityville", "12345");
+
+        members.add(m1);
         members.add(new Member("user2", "pass2", "email2@example.com",
                 "Jane", "Smith", "456 Elm St", "Townsville", "67890"));
         members.add(new Member("user3", "pass3", "email3@example.com",
@@ -74,6 +84,16 @@ public class DeveloperData implements ApplicationRunner {
                 "Ava", "Wilson", "777 Maple St", "Ruralville", "89012"));
 
         memberRepository.saveAll(members);
+
+        LocalDate date1 = LocalDate.now().plusDays(2);
+        LocalDate date2 = LocalDate.now().plusDays(3);
+        Reservation r1 = new Reservation(m1, car1, date1);
+        Reservation r2 = new Reservation(m1, car1, date2);
+
+        reservationRepository.save(r1);
+        reservationRepository.save(r2);
+
+        System.out.println("CHECK =>>>>  " + car1.getReservations().size());
 
     }
 }

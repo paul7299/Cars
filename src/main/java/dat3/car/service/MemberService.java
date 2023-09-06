@@ -84,8 +84,14 @@ public class MemberService {
     public void deleteMemberByUsername(String username) {
         Member member = getMemberByUsername(username);
         memberRepository.delete(member);
+
+        /*
+        Kunne også køre memberRepository.existsById()
+        Og derefter memberRepository.deleteMemberByUsername() (efter oprettelse i repository)
+         */
     }
 
+    // Intern metode for Service-klassen
     private Member getMemberByUsername(String username){
         return memberRepository.findById(username).
                 orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND,"Member with this username does not exist"));
