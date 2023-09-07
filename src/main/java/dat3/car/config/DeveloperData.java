@@ -86,14 +86,18 @@ public class DeveloperData implements ApplicationRunner {
         memberRepository.saveAll(members);
 
         LocalDate date1 = LocalDate.now().plusDays(2);
-        LocalDate date2 = LocalDate.now().plusDays(3);
+        LocalDate date2 = LocalDate.of(2023,12,12);
         Reservation r1 = new Reservation(m1, car1, date1);
         Reservation r2 = new Reservation(m1, car1, date2);
+
 
         reservationRepository.save(r1);
         reservationRepository.save(r2);
 
         System.out.println("CHECK =>>>>  " + car1.getReservations().size());
+        System.out.println("CHECK =>>>> " + m1.getReservations().size());
+
+        System.out.println("Should find: " + reservationRepository.existsByCarIdAndRentalDate(car1.getId(), date2));
 
     }
 }

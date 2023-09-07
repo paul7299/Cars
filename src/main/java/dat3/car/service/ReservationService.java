@@ -29,7 +29,7 @@ public class ReservationService {
     }
 
     public ReservationResponse reserveCar(ReservationRequest body) {
-        if(LocalDate.now().isBefore(body.getRentalDate())){
+        if(LocalDate.now().isAfter(body.getRentalDate())){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"*** Date in the past not allowed ***");
         }
 
@@ -41,7 +41,14 @@ public class ReservationService {
         Car car = carRepository.findById(body.getCarId()).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.NOT_FOUND,"No car with this ID"));
 
+        // Tjekker om bilen er reserveret denne dato
+        if(reservationRepository.existsByCarIdAndRentalDate(body.getCarId(), body.getRentalDate())){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"*** This car is reserved on this date ***");
+        }
+
         Reservation res = new Reservation(member, car, body.getRentalDate());
+
+        reservationRepository.save(res);
 
         return new ReservationResponse(res);
 

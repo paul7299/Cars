@@ -18,6 +18,7 @@ public class ReservationResponse {
     int carId;
     String brand;
     String model;
+    double price;
     LocalDate rentalDate;
 
     public ReservationResponse(Reservation reservation) {
@@ -25,6 +26,7 @@ public class ReservationResponse {
         this.carId = reservation.getCar().getId();
         this.brand = reservation.getCar().getBrand();
         this.model = reservation.getCar().getModel();
+        this.price = reservation.getCar().getPricePrDay();
         this.rentalDate = reservation.getRentalDate();
     }
 
