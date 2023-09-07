@@ -50,7 +50,7 @@ public class MemberResponse {
 
         if(includeAll){
             this.created = m.getCreated();
-            this.edited = m.getLastEdited();
+            this.edited = m.getEdited();
             this.approved = m.isApproved();
             this.ranking = m.getRanking();
         }
