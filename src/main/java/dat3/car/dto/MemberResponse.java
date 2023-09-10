@@ -29,7 +29,7 @@ public class MemberResponse {
     String zip;
     //@JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss",shape = JsonFormat.Shape.STRING) // TODO Hvorfor udkommenteret
     LocalDateTime created;
-    // List<Reservation> reservations;
+    List<ReservationResponse> reservations;
 
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss",shape = JsonFormat.Shape.STRING)
     LocalDateTime edited;
@@ -46,7 +46,7 @@ public class MemberResponse {
         this.lastName = m.getLastName();
         this.city = m.getCity();
         this.zip = m.getZip();
-        // this.reservations = m.getReservations();
+        this.reservations = getReservations(m); // Henter reservationResponses fra Memberets reservations
 
         if(includeAll){
             this.created = m.getCreated();
@@ -55,4 +55,15 @@ public class MemberResponse {
             this.ranking = m.getRanking();
         }
     }
+
+    public List<ReservationResponse> getReservations(Member m){
+        // Reservations hentes fra Memberet som bruges til at oprette memberResponsen
+        List<Reservation> reservations = m.getReservations();
+
+        // Streamer reservations til ReservationResponses
+        List<ReservationResponse> response = reservations.stream().map(reservation -> new ReservationResponse(reservation)).toList();
+
+        return response;
+    }
+
 }

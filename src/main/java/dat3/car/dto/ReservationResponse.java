@@ -16,6 +16,7 @@ public class ReservationResponse {
 
     int id;
     int carId;
+    // String username;
     String brand;
     String model;
     double price;
@@ -25,6 +26,7 @@ public class ReservationResponse {
         this.id = reservation.getId();
         this.carId = reservation.getCar().getId();
         this.brand = reservation.getCar().getBrand();
+        // this.username = reservation.getMember().getUsername();
         this.model = reservation.getCar().getModel();
         this.price = reservation.getCar().getPricePrDay();
         this.rentalDate = reservation.getRentalDate();

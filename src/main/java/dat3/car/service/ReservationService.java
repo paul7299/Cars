@@ -1,5 +1,6 @@
 package dat3.car.service;
 
+import dat3.car.dto.MemberResponse;
 import dat3.car.dto.ReservationRequest;
 import dat3.car.dto.ReservationResponse;
 import dat3.car.entity.Car;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class ReservationService {
@@ -26,6 +28,16 @@ public class ReservationService {
         this.reservationRepository = reservationRepository;
         this.carRepository = carRepository;
         this.memberRepository = memberRepository;
+    }
+
+    public List<ReservationResponse> getReservations() {
+        // Henter alle reservations fra repo
+        List<Reservation> reservations = reservationRepository.findAll();
+
+        // Streamer alle reservations inn i en reservationsRepsons liste (kunne også brukt foreach)
+        List<ReservationResponse> response = reservations.stream().map(reservation -> new ReservationResponse(reservation)).toList();
+
+        return response;
     }
 
     public ReservationResponse reserveCar(ReservationRequest body) {
