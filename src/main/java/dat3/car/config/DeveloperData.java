@@ -103,7 +103,7 @@ public class DeveloperData implements ApplicationRunner {
 
         System.out.println("Should find: " + reservationRepository.existsByCarIdAndRentalDate(car1.getId(), date2));
 
-        // setupUserWithRoleUsers();
+        setupUserWithRoleUsers();
 
     }
 
