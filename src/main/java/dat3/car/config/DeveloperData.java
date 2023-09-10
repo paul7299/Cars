@@ -103,7 +103,7 @@ public class DeveloperData implements ApplicationRunner {
 
         System.out.println("Should find: " + reservationRepository.existsByCarIdAndRentalDate(car1.getId(), date2));
 
-        setupUserWithRoleUsers();
+        // setupUserWithRoleUsers();
 
     }
 
@@ -123,6 +123,8 @@ public class DeveloperData implements ApplicationRunner {
         System.out.println("******* REMOVE THIS BEFORE DEPLOYMENT, AND SETUP DEFAULT USERS DIRECTLY  *****");
         System.out.println("**** ** ON YOUR REMOTE DATABASE                 ******************************");
         System.out.println("******************************************************************************");
+
+
         UserWithRoles user1 = new UserWithRoles("user11", passwordUsedByAll, "user1@a.dk");
         UserWithRoles user2 = new UserWithRoles("user12", passwordUsedByAll, "user2@a.dk");
         UserWithRoles user3 = new UserWithRoles("user13", passwordUsedByAll, "user3@a.dk");

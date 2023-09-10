@@ -30,8 +30,7 @@ public class MemberService {
         for (Member m : members) {
             MemberResponse mr = new MemberResponse(m, includeAll);
             response.add(mr);
-        }
-*/
+        } */
         List<MemberResponse> response = members.stream().map(member -> new MemberResponse(member, includeAll)).toList();
 
         return response;
